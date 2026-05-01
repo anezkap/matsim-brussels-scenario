@@ -145,7 +145,7 @@ public class RunMatsim {
 		private String outputDirectory = null;
 		private String runId = null;
 		private int iterations = -1;
-		private double bikingAllowancePerKm = 0.37;
+		private double bikingAllowancePerKm = 0.;
 
 		static Options parse(String[] args) {
 			Options options = new Options();

@@ -55,7 +55,7 @@
 	</module>
 
 	<module name="controller">
-		<param name="outputDirectory" value="output_0105_v1" />
+		<param name="outputDirectory" value="output_0105_v2" />
 		<param name="lastIteration" value="5" />
 		<param name="writeEventsInterval" value="10" />
 		<param name="writePlansInterval" value="10" />
