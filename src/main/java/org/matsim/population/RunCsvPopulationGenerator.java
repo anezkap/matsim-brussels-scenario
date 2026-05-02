@@ -25,12 +25,15 @@ public class RunCsvPopulationGenerator {
 //        Path csv = Path.of("src/main/java/org/matsim/population/input/combined_population_active.csv");
 //        Path csv = Path.of("src/main/java/org/matsim/population/input/combined_population_active_company_car.csv");
 //        Path csv = Path.of("src/main/java/org/matsim/population/input/combined_population_active_1903.csv");
-        Path csv = Path.of("src/main/java/org/matsim/population/input/all_active_workers_final.csv");
+//        Path csv = Path.of("src/main/java/org/matsim/population/input/all_active_workers_final.csv");
+//        Path csv = Path.of("src/main/java/org/matsim/population/input/all_active_workers_final_0105.csv");
+//        Path csv = Path.of("src/main/java/org/matsim/population/input/all_active_workers_final_with_train.csv");
+        Path csv = Path.of("src/main/java/org/matsim/population/input/0205_reduced_workers.csv");
 
         //        Path out = Path.of("src/main/java/org/matsim/population/output/population.xml.gz");
 //        Path out = Path.of("src/main/java/org/matsim/population/output/population_active.xml.gz");
 //        Path out = Path.of("src/main/java/org/matsim/population/output/population_active_company_car.xml.gz");
-        Path out = Path.of("src/main/java/org/matsim/population/output/all_active_workers_final_0904.xml.gz");
+        Path out = Path.of("src/main/java/org/matsim/population/output/0205_reduced_workers.xml.gz");
 
         Scenario scenario = ScenarioUtils.createScenario(ConfigUtils.createConfig());
         createPopulationFromCsv(scenario, csv);
@@ -145,7 +148,7 @@ public class RunCsvPopulationGenerator {
             double depHome_s = 8.5*3600;
             double depWork_s = 17*3600;
 
-            // ---- mode (car/bike/walk/public transport) ----
+            // ---- mode (car/bike/walk/public transport/train) ----
             String mode = "bike";
 
             // ---- build plan: home -> work -> home ----
@@ -186,8 +189,9 @@ public class RunCsvPopulationGenerator {
             case "bike", "bicycle", "e-bike" -> TransportMode.bike;
             case "walk", "walking" -> TransportMode.walk;
             case "pt", "publictransport", "public transport", "public_transport", "transit" -> TransportMode.pt;
+            case "train" -> TransportMode.train;
             default -> throw new IllegalArgumentException("Unsupported mode value: " + raw
-                    + " (expected car/bike/walk/public transport)");
+                    + " (expected car/bike/walk/public transport/train)");
         };
     }
 

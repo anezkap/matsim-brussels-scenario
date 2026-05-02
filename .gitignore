@@ -65,3 +65,12 @@ hs_err_pid*
 /scenarios/brussels/population_active_0904_1percent_sample.xml
 /scenarios/brussels/population_active_0904_10percent_sample.xml.gz
 /scenarios/brussels/001.30.plans.xml.gz
+/src/main/java/org/matsim/population/input/all_active_workers_final_0105.csv
+/src/main/java/org/matsim/population/input/all_active_workers_final_old.csv
+/src/main/java/org/matsim/population/output/all_active_workers_final_0105.xml.gz
+/src/main/java/org/matsim/population/output/population_active_0105_10percent_sample.xml.gz
+/src/main/java/org/matsim/population/input/all_active_workers_final_with_train.csv
+/src/main/java/org/matsim/population/input/0205_reduced_workers.csv
+/src/main/java/org/matsim/population/output/0205_reduced_workers.xml.gz
+/src/main/java/org/matsim/population/output/0205_reduced_workers_10percent_sample.xml.gz
+/scenarios/brussels/population_active_0105_10percent_sample.xml.gz
