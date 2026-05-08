@@ -5,15 +5,14 @@
 	<module name="global">
 		<param name="randomSeed" value="4711" />
 		<param name="coordinateSystem" value="EPSG:31370" />
-		<param name="numberOfThreads" value="5" />
+		<param name="numberOfThreads" value="12" />
 	</module>
 
 	<module name="network">
-<!--	Using xml and not the zip since we fixed capacity = 0 for some links manually-->
-		<param name="inputNetworkFile" value="../../outputs_network/network_with_cars_bikes_elevations.xml" />
+		<param name="inputNetworkFile" value="../../../../../../Downloads/belgium_merged_network_FINAL.xml.gz" />
 	</module>
 
-<!--	Testing random counts, not real data yet-->
+	<!--	Testing random counts, not real data yet-->
 	<module name="counts" >
 		<param name="inputCountsFile" value="counts.xml" />
 		<param name="analyzedModes" value="car" />
@@ -23,43 +22,22 @@
 	</module>
 
 	<module name="plans">
-<!--		<param name="inputPlansFile" value="population_testing.xml" />-->
-<!--		<param name="inputPlansFile" value="population_active_1percent_sample.xml.gz" />-->
-		<!--		<param name="inputPlansFile" value="population_1percent_sample.xml.gz" />-->
-<!--		<param name="inputPlansFile" value="population_active_10percent_sample.xml.gz" />-->
-<!--		<param name="inputPlansFile" value="population_active_cc_10percent_sample.xml.gz" />-->
-<!--		<param name="inputPlansFile" value="population_active_1903_10percent_sample.xml.gz" />-->
-<!--		<param name="inputPlansFile" value="population_active_1903_5percent_sample.xml.gz" />-->
-		<!--		<param name="inputPlansFile" value="population_10percent_sample.xml.gz" />-->
-<!--		<param name="inputPlansFile" value="population_25percent_sample.xml.gz" />-->
-<!--		<param name="inputPlansFile" value="population_active_25percent_sample.xml.gz" />-->
-
-<!--		Testing scoring with two agents only-->
-<!--		<param name="inputPlansFile" value="population_1_person.xml" />-->
-
-<!--		0904 new version of population-->
-<!--		<param name="inputPlansFile" value="population_active_0904_5percent_sample.xml.gz" />-->
-				<param name="inputPlansFile" value="population_active_0904_1percent_sample.xml.gz" />
-<!--			<param name="inputPlansFile" value="population_active_0904_10percent_sample.xml.gz" />-->
-
-<!--		Starting with some plans already with 10% population-->
-<!--			<param name="inputPlansFile" value="001.30.plans.xml.gz" />-->
-<!--		<param name="inputPlansFile" value="../../output_1804gi/output_plans.xml.gz" />-->
+		 <param name="inputPlansFile" value="population_1_person.xml" />
 	</module>
 
 	<module name="linkStats" >
 		<!-- Specifies over how many iterations the link volumes should be averaged that are used for the link statistics. Use 1 or 0 to only use the link volumes of a single iteration. This values cannot be larger than the value specified for writeLinkStatsInterval -->
 		<param name="averageLinkStatsOverIterations" value="5" />
 		<!-- Specifies how often the link stats should be calculated and written. Use 0 to disable the generation of link stats. -->
-		<param name="writeLinkStatsInterval" value="10" />
+		<param name="writeLinkStatsInterval" value="20" />
 	</module>
 
 	<module name="controller">
-		<param name="outputDirectory" value="output_0105_v2" />
-		<param name="lastIteration" value="5" />
-		<param name="writeEventsInterval" value="10" />
+		<param name="outputDirectory" value="output_0205_v1" />
+		<param name="lastIteration" value="10" />
+		<param name="writeEventsInterval" value="20" />
 		<param name="writePlansInterval" value="10" />
-		<param name="writeTripsInterval" value="10" />
+		<param name="writeTripsInterval" value="20" />
 	</module>
 
 	<module name="routing" >
@@ -84,29 +62,16 @@
 		<param name="mainMode" value="car,bike" />
 		<param name="linkDynamics" value="PassingQ" />
 		<param name="usePersonIdForMissingVehicleId" value="false" />
-		<param name="numberOfThreads" value="5" />
+		<param name="numberOfThreads" value="12" />
 		<param name="snapshotStyle" value="withHoles" />
-		<param name="trafficDynamics" value="withHoles" />
+		<param name="trafficDynamics" value="kinematicWaves" />
 
 		<param name="notifyAboutStuckVehicles" value="true" />
-		<param name="removeStuckVehicles" value="true" />
+		<param name="removeStuckVehicles" value="false" />
 
-<!--				Use x% sample, storage is set to x^0.75 -->
-<!--		1%-->
-<!--		<param name="flowCapacityFactor" value="0.01" />-->
-<!--		<param name="storageCapacityFactor" value="0.0316" />-->
-
-<!--		5%-->
-			<param name="flowCapacityFactor" value="0.05" />
-			<param name="storageCapacityFactor" value="0.106" />
-
-<!--		10%-->
-<!--		<param name="flowCapacityFactor" value="0.1" />-->
-<!--		<param name="storageCapacityFactor" value="0.17783" />-->
-
-<!--		25%-->
-<!--			<param name="flowCapacityFactor" value="0.25" />-->
-<!--			<param name="storageCapacityFactor" value="0.3" />-->
+		<!--		10%-->
+		<param name="flowCapacityFactor" value="0.1" />
+		<param name="storageCapacityFactor" value="0.17783" />
 	</module>
 
 	<module name="scoring">
@@ -126,20 +91,20 @@
 				<param name="closingTime"     value="18:00:00" />
 			</parameterset>
 			<parameterset type="modeParams" >
-				<param name="constant" value="0.0" />
-				<param name="dailyMonetaryConstant" value="0.0" />
+				<param name="constant" value="-0.5" />
+				<param name="dailyMonetaryConstant" value="-0.5" />
 				<param name="dailyUtilityConstant" value="0.0" />
-				<param name="marginalUtilityOfDistance_util_m" value="0.0" />
-				<param name="marginalUtilityOfTraveling_util_hr" value="0.0" />
+				<param name="marginalUtilityOfDistance_util_m" value="-0.0002" />
+				<param name="marginalUtilityOfTraveling_util_hr" value="-0.02" />
 				<param name="mode" value="bike" />
 				<param name="monetaryDistanceRate" value="0.0" />
 			</parameterset>
 			<parameterset type="modeParams" >
-				<param name="constant" value="0.2" />
+				<param name="constant" value="0.5" />
 				<param name="dailyMonetaryConstant" value="-5.3" />
 				<param name="dailyUtilityConstant" value="0.0" />
 				<param name="marginalUtilityOfDistance_util_m" value="0.0" />
-				<param name="marginalUtilityOfTraveling_util_hr" value="0.0" />
+				<param name="marginalUtilityOfTraveling_util_hr" value="2.0" />
 				<param name="mode" value="car" />
 				<param name="monetaryDistanceRate" value="-0.0001" />
 			</parameterset>
@@ -148,7 +113,7 @@
 				<param name="dailyMonetaryConstant" value="-1.5" />
 				<param name="dailyUtilityConstant" value="0.0" />
 				<param name="marginalUtilityOfDistance_util_m" value="0.0" />
-				<param name="marginalUtilityOfTraveling_util_hr" value="0.0" />
+				<param name="marginalUtilityOfTraveling_util_hr" value="-3.5" />
 				<param name="mode" value="pt" />
 				<param name="monetaryDistanceRate" value="0.0" />
 			</parameterset>
@@ -170,12 +135,12 @@
 		<!-- Short distance: full mode choice -->
 		<parameterset type="strategysettings">
 			<param name="strategyName" value="SubtourModeChoice" />
-			<param name="weight" value="0.15" />
+			<param name="weight" value="0.1" />
 			<param name="subpopulation" value="short_distance" />
 		</parameterset>
 		<parameterset type="strategysettings">
 			<param name="strategyName" value="ChangeExpBeta" />
-			<param name="weight" value="0.7" />
+			<param name="weight" value="0.75" />
 			<param name="subpopulation" value="short_distance" />
 		</parameterset>
 		<parameterset type="strategysettings">
@@ -227,20 +192,17 @@
 	<module name="subtourModeChoice">
 		<param name="modes" value="car,pt,bike,walk" />
 		<param name="chainBasedModes" value="car,bike" />
-		<param name="considerCarAvailability" value="true" />
+		<param name="considerCarAvailability" value="false" />
 	</module>
 
 	<module name="bicycle" >
 		<param name="bicycleMode" value="bike" />
 		<!-- marginalUtilityOfSurfacetype -->
-		<param name="marginalUtilityOfComfort_m" value="0.0" />
-<!--		<param name="marginalUtilityOfComfort_m" value="-2.0E-4" />-->
+		<param name="marginalUtilityOfComfort_m" value="-2.0E-4" />
 		<!-- marginalUtilityOfGradient -->
-		<param name="marginalUtilityOfGradient_m_100m" value="0.0" />
-<!--		<param name="marginalUtilityOfGradient_m_100m" value="-0.0002" />-->
+		<param name="marginalUtilityOfGradient_m_100m" value="-0.0002" />
 		<!-- marginalUtilityOfStreettype -->
-		<param name="marginalUtilityOfInfrastructure_m" value="0.0" />
-<!--		<param name="marginalUtilityOfInfrastructure_m" value="-2.0E-4" />-->
+		<param name="marginalUtilityOfInfrastructure_m" value="-2.0E-4" />
 		<!-- maxBicycleSpeed -->
 		<param name="motorizedInteraction" value="false" />
 	</module>

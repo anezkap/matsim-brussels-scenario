@@ -28,12 +28,16 @@ public class RunCsvPopulationGenerator {
 //        Path csv = Path.of("src/main/java/org/matsim/population/input/all_active_workers_final.csv");
 //        Path csv = Path.of("src/main/java/org/matsim/population/input/all_active_workers_final_0105.csv");
 //        Path csv = Path.of("src/main/java/org/matsim/population/input/all_active_workers_final_with_train.csv");
-        Path csv = Path.of("src/main/java/org/matsim/population/input/0205_reduced_workers.csv");
+//        Path csv = Path.of("src/main/java/org/matsim/population/input/0205_reduced_workers.csv");
+//        Path csv = Path.of("src/main/java/org/matsim/population/input/0605_reduced_workers.csv");
+        Path csv = Path.of("src/main/java/org/matsim/population/input/0705_reduced_workers.csv");
 
         //        Path out = Path.of("src/main/java/org/matsim/population/output/population.xml.gz");
 //        Path out = Path.of("src/main/java/org/matsim/population/output/population_active.xml.gz");
 //        Path out = Path.of("src/main/java/org/matsim/population/output/population_active_company_car.xml.gz");
-        Path out = Path.of("src/main/java/org/matsim/population/output/0205_reduced_workers.xml.gz");
+//        Path out = Path.of("src/main/java/org/matsim/population/output/0205_reduced_workers.xml.gz");
+//        Path out = Path.of("src/main/java/org/matsim/population/output/0605_reduced_workers.xml.gz");
+        Path out = Path.of("src/main/java/org/matsim/population/output/0705_reduced_workers.xml.gz");
 
         Scenario scenario = ScenarioUtils.createScenario(ConfigUtils.createConfig());
         createPopulationFromCsv(scenario, csv);

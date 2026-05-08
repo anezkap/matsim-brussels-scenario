@@ -63,4 +63,36 @@
 
 	</person>
 
+	<!-- ====================================================================== -->
+
+	<person id="p100151">
+		<attributes>
+			<attribute name="age" class="java.lang.String">50-54</attribute>
+			<attribute name="carAvail" class="java.lang.String">always</attribute>
+			<attribute name="education" class="java.lang.String">ISCED11_3</attribute>
+			<attribute name="has_car" class="java.lang.Boolean">true</attribute>
+			<attribute name="home_municipality" class="java.lang.String">21004</attribute>
+			<attribute name="industry" class="java.lang.String">F</attribute>
+			<attribute name="lives_in_brussels" class="java.lang.String">True</attribute>
+			<attribute name="median_income" class="java.lang.Double">24620.0</attribute>
+			<attribute name="sex" class="java.lang.String">F</attribute>
+			<attribute name="subpopulation" class="java.lang.String">company_car</attribute>
+			<attribute name="vehicles" class="org.matsim.vehicles.PersonVehicles">{"car":"p100151_car","bike":"p100151_bike"}</attribute>
+			<attribute name="works_in_brussels" class="java.lang.String">True</attribute>
+		</attributes>
+		<plan score="-398.72487441701855" selected="no">
+			<activity type="home" link="487973580005f" x="149989.029" y="175989.319" end_time="07:49:14" >
+			</activity>
+			<leg mode="car">
+			</leg>
+			<activity type="work" link="263503830012f" x="148815.89744" y="173735.82619997952" end_time="16:51:00" >
+			</activity>
+			<leg mode="car">
+			</leg>
+			<activity type="home" link="487973580005f" x="149989.029" y="175989.319" >
+			</activity>
+		</plan>
+
+	</person>
+
 </population>
