@@ -42,65 +42,12 @@ class RunPopulationDownsamplingExample {
 
     public static void main(final String[] args) {
 
-//        String inputPopFilename = "src/main/java/org/matsim/population/output/population.xml.gz";
-//        String outputPopFilename = "src/main/java/org/matsim/population/output/population_1percent_sample.xml.gz";
-//        String inputPopFilename = "src/main/java/org/matsim/population/output/population_active.xml.gz";
-//        String outputPopFilename = "src/main/java/org/matsim/population/output/population_active_25percent_sample.xml.gz";
-//        String inputPopFilename = "src/main/java/org/matsim/population/output/population_active_company_car.xml.gz";
-//        String outputPopFilename = "src/main/java/org/matsim/population/output/population_active_cc_10percent_sample.xml.gz";
-//        String inputPopFilename = "src/main/java/org/matsim/population/output/population_active_1903.xml.gz";
-//        String outputPopFilename = "src/main/java/org/matsim/population/output/population_active_1903_5percent_sample.xml.gz";
-//        String inputPopFilename = "src/main/java/org/matsim/population/output/all_active_workers_final_0904.xml.gz";
-//        String outputPopFilename = "src/main/java/org/matsim/population/output/population_active_0904_10percent_sample.xml.gz";
-//        String inputPopFilename = "src/main/java/org/matsim/population/output/all_active_workers_final_0105.xml.gz";
-//        String outputPopFilename = "src/main/java/org/matsim/population/output/population_active_0105_10percent_sample.xml.gz";
-//        String inputPopFilename = "src/main/java/org/matsim/population/output/all_active_workers_final_0205.xml.gz";
-//        String outputPopFilename = "src/main/java/org/matsim/population/output/population_active_0205_10percent_sample.xml.gz";
-//        String inputPopFilename = "src/main/java/org/matsim/population/output/0205_reduced_workers.xml.gz";
-//        String outputPopFilename = "src/main/java/org/matsim/population/output/0205_reduced_workers_10percent_sample.xml.gz";
-//        String inputPopFilename = "src/main/java/org/matsim/population/output/0605_reduced_workers.xml.gz";
-//        String outputPopFilename = "src/main/java/org/matsim/population/output/0605_reduced_workers_10percent_sample.xml.gz";
-//        String inputPopFilename = "src/main/java/org/matsim/population/output/0705_reduced_workers.xml.gz";
-//        String outputPopFilename = "src/main/java/org/matsim/population/output/0705_reduced_workers_1percent_sample.xml.gz";
-//        String inputPopFilename = "src/main/java/org/matsim/population/output/3105_reduced_workers.xml.gz";
-//        String outputPopFilename = "src/main/java/org/matsim/population/output/3105_reduced_workers_5percent_sample.xml.gz";
-        String inputPopFilename = "src/main/java/org/matsim/population/output/0206_reduced_workers.xml.gz";
-        String outputPopFilename = "src/main/java/org/matsim/population/output/0206_reduced_workers_1percent_sample.xml.gz";
-
-//        if ( args!=null ) {
-//            if (args.length != 2) {
-//                System.err.println("Usage: cmd inputPop.xml.gz outputPop.xml.gz");
-//                System.exit(401);
-//            } else {
-//                inputPopFilename = args[0] ;
-//                outputPopFilename = args[1] ;
-//            }
-//        }
+        String inputPopFilename = "src/main/java/org/matsim/population/output/full_population.xml.gz";
+        String outputPopFilename = "src/main/java/org/matsim/population/output/full_population_1percent_sample.xml.gz";
 
         RunPopulationDownsamplingExample app = new RunPopulationDownsamplingExample(inputPopFilename, outputPopFilename);
         app.run();
     }
-
-//    private void run() {
-//
-//        // create an empty scenario using an empty configuration
-//        Scenario scenario = ScenarioUtils.createScenario(ConfigUtils.createConfig());
-//
-//        // the writer will be called by the reader and write the new population file. As parameter the fraction of the
-//        // input population is passed. In our case we will downsize the population to 1%.
-//        StreamingPopulationWriter writer = new StreamingPopulationWriter(0.01);
-//
-//        // the reader will read in an existing population file
-//        StreamingPopulationReader reader = new StreamingPopulationReader(scenario);
-//        reader.addAlgorithm(writer);
-//
-//        try {
-//            writer.startStreaming(outputPopFilename);
-//            reader.readFile(inputPopFilename);
-//        } finally {
-//            writer.closeStreaming();
-//        }
-//    }
 
     private void run() {
         final String forcedAgentId = "KRISTINA";

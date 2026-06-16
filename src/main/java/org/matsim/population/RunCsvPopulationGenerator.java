@@ -21,28 +21,8 @@ import java.util.List;
 public class RunCsvPopulationGenerator {
 
     public static void main(String[] args) throws IOException {
-//        Path csv = Path.of("src/main/java/org/matsim/population/input/combined_population.csv");
-//        Path csv = Path.of("src/main/java/org/matsim/population/input/combined_population_active.csv");
-//        Path csv = Path.of("src/main/java/org/matsim/population/input/combined_population_active_company_car.csv");
-//        Path csv = Path.of("src/main/java/org/matsim/population/input/combined_population_active_1903.csv");
-//        Path csv = Path.of("src/main/java/org/matsim/population/input/all_active_workers_final.csv");
-//        Path csv = Path.of("src/main/java/org/matsim/population/input/all_active_workers_final_0105.csv");
-//        Path csv = Path.of("src/main/java/org/matsim/population/input/all_active_workers_final_with_train.csv");
-//        Path csv = Path.of("src/main/java/org/matsim/population/input/0205_reduced_workers.csv");
-//        Path csv = Path.of("src/main/java/org/matsim/population/input/0605_reduced_workers.csv");
-//        Path csv = Path.of("src/main/java/org/matsim/population/input/0705_reduced_workers.csv");
-//        Path csv = Path.of("src/main/java/org/matsim/population/input/3105_reduced_workers.csv");
-        Path csv = Path.of("src/main/java/org/matsim/population/input/0206_reduced_workers.csv");
-
-
-        //        Path out = Path.of("src/main/java/org/matsim/population/output/population.xml.gz");
-//        Path out = Path.of("src/main/java/org/matsim/population/output/population_active.xml.gz");
-//        Path out = Path.of("src/main/java/org/matsim/population/output/population_active_company_car.xml.gz");
-//        Path out = Path.of("src/main/java/org/matsim/population/output/0205_reduced_workers.xml.gz");
-//        Path out = Path.of("src/main/java/org/matsim/population/output/0605_reduced_workers.xml.gz");
-//        Path out = Path.of("src/main/java/org/matsim/population/output/0705_reduced_workers.xml.gz");
-//        Path out = Path.of("src/main/java/org/matsim/population/output/3105_reduced_workers.xml.gz");
-        Path out = Path.of("src/main/java/org/matsim/population/output/0206_reduced_workers.xml.gz");
+        Path csv = Path.of("src/main/java/org/matsim/population/input/full_population.csv");
+        Path out = Path.of("src/main/java/org/matsim/population/output/full_population.xml.gz");
 
         Scenario scenario = ScenarioUtils.createScenario(ConfigUtils.createConfig());
         createPopulationFromCsv(scenario, csv);
@@ -126,7 +106,7 @@ public class RunCsvPopulationGenerator {
                 plan.addActivity(homeAct2);
             }
 
-//            Add my wife as an agent
+//          Extra agent for testing purposes
             String personId = "KRISTINA";
 
             Person person = pf.createPerson(Id.create(personId, Person.class));
@@ -204,11 +184,6 @@ public class RunCsvPopulationGenerator {
                     + " (expected car/bike/walk/public transport/train)");
         };
     }
-
-//    private static String[] splitCsvLine(String line) {
-//        // Minimal CSV splitter: OK only if there are no quoted commas in fields.
-//        return line.split("\\s*,\\s*", -1);
-//    }
 
     private static String[] splitCsvLine(String line) {
         List<String> tokens = new ArrayList<>();
