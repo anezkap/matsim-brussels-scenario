@@ -45,5 +45,3 @@ hs_err_pid*
 # Population files
 /src/main/java/org/matsim/population/input/
 /src/main/java/org/matsim/population/output/
-
-/scenarios/brussels/
