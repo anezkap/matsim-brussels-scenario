@@ -2,6 +2,9 @@ This repository expects two files:
 - `belgium.osm.pbf` -- the network file
 - `DTM_RBC_50cm.tif` -- the digital terrain model
 
+Alternatively, you can also add the `Bruxelles_Cyclability_Data.geojson` file if you are planning to use the quietness attirbute.
+This data is available on request from Cyclestreets.
+
 To get the `belgium.osm.pbf` file, you can follow these steps:
 
 1. Download data from GeoFabrik: https://download.geofabrik.de/europe/belgium.html

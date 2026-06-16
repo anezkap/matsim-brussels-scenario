@@ -35,6 +35,7 @@ hs_err_pid*
 # Repo with input big files
 /inputs_network/belgium.osm.pbf
 /inputs_network/DTM_RBC_50cm.tif
+/inputs_network/Bruxelles_Cyclability_Data.geojson
 
 .DS_Store
 
