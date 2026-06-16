@@ -1,4 +1,5 @@
 *.class
+.DS_Store
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -32,29 +33,12 @@ hs_err_pid*
 #*.osm
 #*.osm.pbf
 
-# Repo with input big files
+# Repository with big network input files
 /inputs_network/belgium.osm.pbf
 /inputs_network/DTM_RBC_50cm.tif
 /inputs_network/Bruxelles_Cyclability_Data.geojson
 
-.DS_Store
-
-
-/src/main/java/org/matsim/population/input/population.xml
-/src/main/java/org/matsim/population/input/combined_population.csv
-/src/main/java/org/matsim/population/input/combined_population_active.csv
-/src/main/java/org/matsim/population/output/population.xml.gz
-/scenarios/brussels/population_all.xml.gz
-/src/main/java/org/matsim/population/output/population_active.xml.gz
-/output_cputreshold/ITERS/
-/scenarios/brussels/population_active_10percent_sample.xml.gz
-/scenarios/brussels/population_active_25percent_sample.xml.gz
-/scenarios/brussels/population_active_cc_10percent_sample.xml.gz
-/src/main/java/org/matsim/population/input/combined_population_active_1903.csv
-/src/main/java/org/matsim/population/input/combined_population_active_company_car.csv
-/scenarios/brussels/population_active_1903_10percent_sample.xml.gz
-
-
+# Output directories
 /output_*
 
 
@@ -62,29 +46,4 @@ hs_err_pid*
 /src/main/java/org/matsim/population/input/
 /src/main/java/org/matsim/population/output/
 
-/src/main/java/org/matsim/population/input/all_active_workers_final.csv
-/scenarios/brussels/population_active_0904_5percent_sample.xml
-/scenarios/brussels/population_active_0904_5percent_sample.xml.gz
-/src/main/java/org/matsim/population/output/all_active_workers_final_0904.xml.gz
-/src/main/java/org/matsim/population/output/population_active_0904_5percent_sample.xml.gz
-/src/main/java/org/matsim/population/output/population_active_0904_1percent_sample.xml.gz
-/scenarios/brussels/population_active_0904_1percent_sample.xml.gz
-/scenarios/brussels/population_active_0904_1percent_sample.xml
-/scenarios/brussels/population_active_0904_10percent_sample.xml.gz
-/scenarios/brussels/001.30.plans.xml.gz
-/src/main/java/org/matsim/population/input/all_active_workers_final_0105.csv
-/src/main/java/org/matsim/population/input/all_active_workers_final_old.csv
-/src/main/java/org/matsim/population/output/all_active_workers_final_0105.xml.gz
-/src/main/java/org/matsim/population/output/population_active_0105_10percent_sample.xml.gz
-/src/main/java/org/matsim/population/input/all_active_workers_final_with_train.csv
-/src/main/java/org/matsim/population/input/0205_reduced_workers.csv
-/src/main/java/org/matsim/population/output/0205_reduced_workers.xml.gz
-/src/main/java/org/matsim/population/output/0205_reduced_workers_10percent_sample.xml.gz
-/scenarios/brussels/population_active_0105_10percent_sample.xml.gz
-/src/main/java/org/matsim/population/input/0605_reduced_workers.csv
-/src/main/java/org/matsim/population/output/0605_reduced_workers.xml.gz
-/src/main/java/org/matsim/population/output/0605_reduced_workers_10percent_sample.xml.gz
-/src/main/java/org/matsim/population/input/0705_reduced_workers.csv
-/src/main/java/org/matsim/population/output/0705_reduced_workers.xml.gz
-/src/main/java/org/matsim/population/output/0705_reduced_workers_10percent_sample.xml.gz
-.DS_Store
+/scenarios/brussels/
