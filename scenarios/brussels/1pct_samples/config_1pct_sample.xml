@@ -31,8 +31,8 @@
     </module>
 
     <module name="controller">
-        <param name="outputDirectory" value="output_1804_v6" />
-        <param name="lastIteration" value="400" />
+        <param name="outputDirectory" value="output_1pct_sample" />
+        <param name="lastIteration" value="1000" />
         <param name="writeEventsInterval" value="100" />
         <param name="writePlansInterval" value="100" />
         <param name="writeTripsInterval" value="100" />
@@ -70,10 +70,6 @@
         <!-- 1%-->
         <param name="flowCapacityFactor" value="0.01" />
         <param name="storageCapacityFactor" value="0.0316227766" />
-
-        <!--		5%-->
-<!--        <param name="flowCapacityFactor" value="0.05" />-->
-<!--        <param name="storageCapacityFactor" value="0.10573712634" />-->
     </module>
 
     <module name="scoring">

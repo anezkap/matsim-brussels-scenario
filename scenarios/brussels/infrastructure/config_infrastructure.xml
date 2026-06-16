@@ -20,7 +20,7 @@
     </module>
 
     <module name="plans">
-        <param name="inputPlansFile" value="plans_5pct_sample_1.xml.gz" />
+        <param name="inputPlansFile" value="../baseline_scenario_output_plans.xml.gz" />
     </module>
 
     <module name="linkStats" >
@@ -31,8 +31,8 @@
     </module>
 
     <module name="controller">
-        <param name="outputDirectory" value="output_5pct_sample" />
-        <param name="lastIteration" value="1000" />
+        <param name="outputDirectory" value="output_infrastructure" />
+        <param name="lastIteration" value="800" />
         <param name="writeEventsInterval" value="100" />
         <param name="writePlansInterval" value="100" />
         <param name="writeTripsInterval" value="100" />
@@ -67,9 +67,9 @@
         <param name="notifyAboutStuckVehicles" value="true" />
         <param name="removeStuckVehicles" value="false" />
 
-        <!--		5%-->
-        <param name="flowCapacityFactor" value="0.05" />
-        <param name="storageCapacityFactor" value="0.10573712634" />
+        <!--		10%-->
+        <param name="flowCapacityFactor" value="0.1" />
+        <param name="storageCapacityFactor" value="0.17783" />
     </module>
 
     <module name="scoring">
@@ -129,14 +129,35 @@
         <param name="activateAnnealingModule" value="true" />
         <parameterset type="AnnealingVariable" >
             <param name="annealParameter" value="globalInnovationRate" />
-            <!--			globalInnovationRate: fraction of innovated agents is annealed-->
             <param name="annealType" value="sigmoid" />
-            <!--			sigmoid: see comment above shapeFactor-->
             <param name="subpopulation" value="short_distance" />
-            <!-- this parameter enters the exponential and sigmoid formulas. May be an iteration or a share, i.e. 0.5 for halfLife at 50% of iterations. Exponential: startValue / exp(it/halfLife) -->
-            <!--			the exponential entry can be ignored-->
             <param name="halfLife" value="0.5" />
-            <!-- sigmoid: 1/(1+e^(shapeFactor*(it - halfLife))); geometric: startValue * shapeFactor^it; msa: startValue / it^shapeFactor -->
+            <param name="shapeFactor" value="0.01" />
+            <param name="startValue" value="0.45" />
+            <param name="endValue" value="0.01" />
+        </parameterset>
+    </module>
+
+    <module name="replanningAnnealer" >
+        <param name="activateAnnealingModule" value="true" />
+        <parameterset type="AnnealingVariable" >
+            <param name="annealParameter" value="globalInnovationRate" />
+            <param name="annealType" value="sigmoid" />
+            <param name="subpopulation" value="company_car" />
+            <param name="halfLife" value="0.5" />
+            <param name="shapeFactor" value="0.01" />
+            <param name="startValue" value="0.45" />
+            <param name="endValue" value="0.01" />
+        </parameterset>
+    </module>
+
+    <module name="replanningAnnealer" >
+        <param name="activateAnnealingModule" value="true" />
+        <parameterset type="AnnealingVariable" >
+            <param name="annealParameter" value="globalInnovationRate" />
+            <param name="annealType" value="sigmoid" />
+            <param name="subpopulation" value="long_distance" />
+            <param name="halfLife" value="0.5" />
             <param name="shapeFactor" value="0.01" />
             <param name="startValue" value="0.45" />
             <param name="endValue" value="0.01" />
@@ -212,11 +233,11 @@
     <module name="bicycle" >
         <param name="bicycleMode" value="bike" />
         <!-- marginalUtilityOfSurfacetype -->
-        <param name="marginalUtilityOfComfort_m" value="-2.0E-4" />
+        <param name="marginalUtilityOfComfort_m" value="-0.0002" />
         <!-- marginalUtilityOfGradient -->
         <param name="marginalUtilityOfGradient_m_100m" value="-0.0002" />
         <!-- marginalUtilityOfStreettype -->
-        <param name="marginalUtilityOfInfrastructure_m" value="-2.0E-4" />
+        <param name="marginalUtilityOfInfrastructure_m" value="0.0" />
         <!-- maxBicycleSpeed -->
         <param name="motorizedInteraction" value="false" />
     </module>

@@ -45,3 +45,6 @@ hs_err_pid*
 # Population files
 /src/main/java/org/matsim/population/input/
 /src/main/java/org/matsim/population/output/
+
+# MATSim output file -- has more than 100MB
+/scenarios/brussels/baseline_scenario_output_plans.xml.gz
