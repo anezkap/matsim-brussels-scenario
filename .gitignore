@@ -32,9 +32,9 @@ hs_err_pid*
 #*.osm
 #*.osm.pbf
 
-# Repo with input big files and final network
-/inputs_network
-/outputs_network/*.xml
+# Repo with input big files
+/inputs_network/belgium.osm.pbf
+/inputs_network/DTM_RBC_50cm.tif
 
 .DS_Store
 
