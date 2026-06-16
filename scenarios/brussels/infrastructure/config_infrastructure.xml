@@ -1,0 +1,250 @@
+<?xml version="1.0" ?>
+<!DOCTYPE config SYSTEM "http://www.matsim.org/files/dtd/config_v2.dtd">
+<config>
+
+    <module name="global">
+        <param name="randomSeed" value="4711" />
+        <param name="coordinateSystem" value="EPSG:31370" />
+        <param name="numberOfThreads" value="14" />
+    </module>
+
+    <module name="timeAllocationMutator" >
+        <!-- Mutates times only around the initially defined end times. -->
+        <param name="mutateAroundInitialEndTimeOnly" value="true" />
+        <!-- Default:1800.0; Defines how many seconds a time mutation can maximally shift a time. -->
+        <param name="mutationRange" value="1800.0" />
+    </module>
+
+    <module name="network">
+        <param name="inputNetworkFile" value="../../../belgium_network.xml.gz" />
+    </module>
+
+    <module name="plans">
+        <param name="inputPlansFile" value="../baseline_scenario_output_plans.xml.gz" />
+    </module>
+
+    <module name="linkStats" >
+        <!-- Specifies over how many iterations the link volumes should be averaged that are used for the link statistics. Use 1 or 0 to only use the link volumes of a single iteration. This values cannot be larger than the value specified for writeLinkStatsInterval -->
+        <param name="averageLinkStatsOverIterations" value="5" />
+        <!-- Specifies how often the link stats should be calculated and written. Use 0 to disable the generation of link stats. -->
+        <param name="writeLinkStatsInterval" value="100" />
+    </module>
+
+    <module name="controller">
+        <param name="outputDirectory" value="output_infrastructure" />
+        <param name="lastIteration" value="800" />
+        <param name="writeEventsInterval" value="100" />
+        <param name="writePlansInterval" value="100" />
+        <param name="writeTripsInterval" value="100" />
+    </module>
+
+    <module name="routing" >
+        <param name="accessEgressType" value="accessEgressModeToLink" />
+        <param name="networkModes" value="car,bike" />
+        <param name="clearDefaultTeleportedModeParams" value="true" />
+        <parameterset type="teleportedModeParameters" >
+            <param name="beelineDistanceFactor" value="1.3" />
+            <param name="mode" value="walk" />
+            <param name="teleportedModeFreespeedFactor" value="null" />
+            <param name="teleportedModeSpeed" value="1.111111111" /> <!-- 4 km/h -->
+        </parameterset>
+        <parameterset type="teleportedModeParameters" >
+            <param name="beelineDistanceFactor" value="1.3" />
+            <param name="mode" value="pt" />
+            <param name="teleportedModeFreespeedFactor" value="null" />
+            <param name="teleportedModeSpeed" value="4.166666666666667" /> <!-- 15 km/h -->
+        </parameterset>
+    </module>
+
+    <module name="qsim" >
+        <param name="mainMode" value="car,bike" />
+        <param name="linkDynamics" value="PassingQ" />
+        <param name="usePersonIdForMissingVehicleId" value="false" />
+        <param name="numberOfThreads" value="14" />
+        <param name="snapshotStyle" value="withHoles" />
+        <param name="trafficDynamics" value="kinematicWaves" />
+
+        <param name="notifyAboutStuckVehicles" value="true" />
+        <param name="removeStuckVehicles" value="false" />
+
+        <!--		10%-->
+        <param name="flowCapacityFactor" value="0.1" />
+        <param name="storageCapacityFactor" value="0.17783" />
+    </module>
+
+    <module name="scoring">
+        <param name="fractionOfIterationsToStartScoreMSA" value="0.9"/>
+        <param name="lateArrival" value="-18" />
+        <param name="performing" value="+6" />
+        <param name="writeExperiencedPlans" value="true" />
+        <parameterset type="scoringParameters" >
+            <parameterset type="activityParams" >
+                <param name="activityType"            value="home" />
+                <param name="typicalDuration" value="14:30:00" />
+            </parameterset>
+            <parameterset type="activityParams" >
+                <param name="activityType"            value="work" />
+                <param name="typicalDuration" value="08:30:00" />
+            </parameterset>
+            <parameterset type="modeParams" >
+                <param name="constant" value="-0.9" />
+                <param name="dailyMonetaryConstant" value="-0.5" />
+                <param name="dailyUtilityConstant" value="0.0" />
+                <param name="marginalUtilityOfDistance_util_m" value="-0.0004" />
+                <param name="marginalUtilityOfTraveling_util_hr" value="-1.5" />
+                <param name="mode" value="bike" />
+                <param name="monetaryDistanceRate" value="0.0" />
+            </parameterset>
+            <parameterset type="modeParams" >
+                <param name="constant" value="0.18" />
+                <param name="dailyMonetaryConstant" value="-5.3" />
+                <param name="dailyUtilityConstant" value="0.0" />
+                <param name="marginalUtilityOfDistance_util_m" value="0.0" />
+                <param name="marginalUtilityOfTraveling_util_hr" value="-0.5" />
+                <param name="mode" value="car" />
+                <param name="monetaryDistanceRate" value="-0.0001" />
+            </parameterset>
+            <parameterset type="modeParams" >
+                <param name="constant" value="-0.17" />
+                <param name="dailyMonetaryConstant" value="-1.5" />
+                <param name="dailyUtilityConstant" value="0.0" />
+                <param name="marginalUtilityOfDistance_util_m" value="0.0" />
+                <param name="marginalUtilityOfTraveling_util_hr" value="-1.5" />
+                <param name="mode" value="pt" />
+                <param name="monetaryDistanceRate" value="0.0" />
+            </parameterset>
+            <parameterset type="modeParams" >
+                <param name="constant" value="0.5" />
+                <param name="dailyMonetaryConstant" value="0.0" />
+                <param name="dailyUtilityConstant" value="0.0" />
+                <param name="marginalUtilityOfDistance_util_m" value="-0.0002" />
+                <param name="marginalUtilityOfTraveling_util_hr" value="0.5" />
+                <param name="mode" value="walk" />
+                <param name="monetaryDistanceRate" value="0.0" />
+            </parameterset>
+        </parameterset>
+    </module>
+
+    <module name="replanningAnnealer" >
+        <param name="activateAnnealingModule" value="true" />
+        <parameterset type="AnnealingVariable" >
+            <param name="annealParameter" value="globalInnovationRate" />
+            <param name="annealType" value="sigmoid" />
+            <param name="subpopulation" value="short_distance" />
+            <param name="halfLife" value="0.5" />
+            <param name="shapeFactor" value="0.01" />
+            <param name="startValue" value="0.45" />
+            <param name="endValue" value="0.01" />
+        </parameterset>
+    </module>
+
+    <module name="replanningAnnealer" >
+        <param name="activateAnnealingModule" value="true" />
+        <parameterset type="AnnealingVariable" >
+            <param name="annealParameter" value="globalInnovationRate" />
+            <param name="annealType" value="sigmoid" />
+            <param name="subpopulation" value="company_car" />
+            <param name="halfLife" value="0.5" />
+            <param name="shapeFactor" value="0.01" />
+            <param name="startValue" value="0.45" />
+            <param name="endValue" value="0.01" />
+        </parameterset>
+    </module>
+
+    <module name="replanningAnnealer" >
+        <param name="activateAnnealingModule" value="true" />
+        <parameterset type="AnnealingVariable" >
+            <param name="annealParameter" value="globalInnovationRate" />
+            <param name="annealType" value="sigmoid" />
+            <param name="subpopulation" value="long_distance" />
+            <param name="halfLife" value="0.5" />
+            <param name="shapeFactor" value="0.01" />
+            <param name="startValue" value="0.45" />
+            <param name="endValue" value="0.01" />
+        </parameterset>
+    </module>
+
+    <module name="replanning">
+        <param name="fractionOfIterationsToDisableInnovation" value="0.9" />
+
+        <!-- Short distance: full mode choice -->
+        <parameterset type="strategysettings">
+            <param name="strategyName" value="SubtourModeChoice" />
+            <param name="weight" value="0.1" />
+            <param name="subpopulation" value="short_distance" />
+        </parameterset>
+        <parameterset type="strategysettings">
+            <param name="strategyName" value="ChangeExpBeta" />
+            <param name="weight" value="0.75" />
+            <param name="subpopulation" value="short_distance" />
+        </parameterset>
+        <parameterset type="strategysettings">
+            <param name="strategyName" value="ReRoute" />
+            <param name="weight" value="0.1" />
+            <param name="subpopulation" value="short_distance" />
+        </parameterset>
+        <parameterset type="strategysettings">
+            <param name="strategyName" value="TimeAllocationMutator" />
+            <param name="weight" value="0.05" />
+            <param name="subpopulation" value="short_distance" />
+        </parameterset>
+
+        <!-- Company car: always car, no mode choice -->
+        <parameterset type="strategysettings">
+            <param name="strategyName" value="ChangeExpBeta" />
+            <param name="weight" value="0.85" />
+            <param name="subpopulation" value="company_car" />
+        </parameterset>
+        <parameterset type="strategysettings">
+            <param name="strategyName" value="ReRoute" />
+            <param name="weight" value="0.1" />
+            <param name="subpopulation" value="company_car" />
+        </parameterset>
+        <parameterset type="strategysettings">
+            <param name="strategyName" value="TimeAllocationMutator" />
+            <param name="weight" value="0.05" />
+            <param name="subpopulation" value="company_car" />
+        </parameterset>
+
+        <!-- Long distance: no mode choice, only reroute and scoring -->
+        <parameterset type="strategysettings">
+            <param name="strategyName" value="ChangeExpBeta" />
+            <param name="weight" value="0.85" />
+            <param name="subpopulation" value="long_distance" />
+        </parameterset>
+        <parameterset type="strategysettings">
+            <param name="strategyName" value="ReRoute" />
+            <param name="weight" value="0.1" />
+            <param name="subpopulation" value="long_distance" />
+        </parameterset>
+        <parameterset type="strategysettings">
+            <param name="strategyName" value="TimeAllocationMutator" />
+            <param name="weight" value="0.05" />
+            <param name="subpopulation" value="long_distance" />
+        </parameterset>
+    </module>
+
+    <module name="subtourModeChoice">
+        <param name="modes" value="car,pt,bike,walk" />
+        <param name="chainBasedModes" value="car,bike" />
+        <param name="considerCarAvailability" value="true" />
+    </module>
+
+    <module name="bicycle" >
+        <param name="bicycleMode" value="bike" />
+        <!-- marginalUtilityOfSurfacetype -->
+        <param name="marginalUtilityOfComfort_m" value="-0.0002" />
+        <!-- marginalUtilityOfGradient -->
+        <param name="marginalUtilityOfGradient_m_100m" value="-0.0002" />
+        <!-- marginalUtilityOfStreettype -->
+        <param name="marginalUtilityOfInfrastructure_m" value="0.0" />
+        <!-- maxBicycleSpeed -->
+        <param name="motorizedInteraction" value="false" />
+    </module>
+
+    <module name="travelTimeCalculator" >
+        <param name="analyzedModes" value="car,bike" />
+        <param name="separateModes" value="true" />
+    </module>
+
+</config>

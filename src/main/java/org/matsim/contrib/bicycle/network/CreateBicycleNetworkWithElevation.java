@@ -19,24 +19,13 @@ public class CreateBicycleNetworkWithElevation {
 
     private static final String outputCRS = "EPSG:31370"; // Belgian Lambert 72
     private static final String tiffFileCRS = "EPSG:31370"; // Belgian Lambert 72
-//    private static final String inputOsmFile = "inputs_network/merged-network_pbf.osm.pbf";
-//    private static final String inputTiffFile = "inputs_network/terrain.tif";
-//    private static final String outputFile = "outputs_network/network_with_cars_bikes_elevations.xml.gz";
 
-    private static final String inputOsmFile = "../../../../Downloads/belgium_merged_network_FINAL.osm.pbf";
-    private static final String inputTiffFile = "../../../../Downloads/DTM_RBC_50cm.tif";
-    private static final String outputFile = "../../../../Downloads/belgium_merged_network_2605.xml.gz";
-    private static final String quietnessFile = "../../../../Downloads/Bruxelles_Cyclability_Data.geojson";
+    private static final String inputOsmFile = "inputs_network/belgium_merged_network.osm.pbf";
+    private static final String inputTiffFile = "inputs_network/DTM_RBC_50cm.tif";
+    private static final String outputFile = "belgium_network.xml.gz";
 
-//    private static final String inputOsmFile = "../../../../Downloads/testing_brussels.osm.pbf";
-//    private static final String inputTiffFile = "../../../../Downloads/DTM_RBC_50cm_fixed.tif";
-//    private static final String outputFile = "../../../../Downloads/testing_brussels_network.xml.gz";
-//    private static final String quietnessFile = "../../../../Downloads/Bruxelles_Cyclability_Data.geojson";
-
-//    private static final String inputOsmFile = "../../../../Downloads/brussels_network.osm.pbf";
-//    private static final String inputTiffFile = "../../../../Downloads/DTM_RBC_50cm.tif";
-//    private static final String outputFile = "../../../../Downloads/brussels_only_network.xml.gz";
-//    private static final String quietnessFile = "../../../../Downloads/Bruxelles_Cyclability_Data.geojson";
+    // This file is not publicly available, only de-comment if you have access to it
+//    private static final String quietnessFile = "inputs_network/Bruxelles_Cyclability_Data.geojson";
 
     public static void main(String[] args) throws IOException {
 
@@ -45,15 +34,15 @@ public class CreateBicycleNetworkWithElevation {
         // The OSM data are usually in WGS84
         var transformation = TransformationFactory.getCoordinateTransformation(TransformationFactory.WGS84, outputCRS);
 
-        // Pre-load quietness map once
-        Map<Long, Integer> quietnessMap = QuietnessLoader.loadQuietnessMap(quietnessFile);
+        // Pre-load quietness map once -- only if you have the data available
+//        Map<Long, Integer> quietnessMap = QuietnessLoader.loadQuietnessMap(quietnessFile);
 
         var network = new OsmBicycleReader.Builder()
                 .setCoordinateTransformation(transformation)
                 .setAfterLinkCreated((link, tags, direction) -> {
                     addElevationIfNecessary(link.getFromNode(), elevationParser);
                     addElevationIfNecessary(link.getToNode(), elevationParser);
-                    addQuietness(link, quietnessMap);
+//                    addQuietness(link, quietnessMap);
                 })
                 .build()
                 .read(inputOsmFile);
