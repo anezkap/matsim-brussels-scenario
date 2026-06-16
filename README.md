@@ -2,6 +2,8 @@
 
 This is an adapted repository of the [MATSim example project](https://github.com/matsim-org/matsim-examples),
 containing the Brussels commuters scenario.
+
+The input synthetic population was created using the [Synthetic Population Pipeline](https://github.com/anezkap/synthetic-population-pipeline).
   
 ### Import into eclipse
 
