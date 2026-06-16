@@ -60,8 +60,12 @@ class RunPopulationDownsamplingExample {
 //        String outputPopFilename = "src/main/java/org/matsim/population/output/0205_reduced_workers_10percent_sample.xml.gz";
 //        String inputPopFilename = "src/main/java/org/matsim/population/output/0605_reduced_workers.xml.gz";
 //        String outputPopFilename = "src/main/java/org/matsim/population/output/0605_reduced_workers_10percent_sample.xml.gz";
-        String inputPopFilename = "src/main/java/org/matsim/population/output/0705_reduced_workers.xml.gz";
-        String outputPopFilename = "src/main/java/org/matsim/population/output/0705_reduced_workers_10percent_sample.xml.gz";
+//        String inputPopFilename = "src/main/java/org/matsim/population/output/0705_reduced_workers.xml.gz";
+//        String outputPopFilename = "src/main/java/org/matsim/population/output/0705_reduced_workers_1percent_sample.xml.gz";
+//        String inputPopFilename = "src/main/java/org/matsim/population/output/3105_reduced_workers.xml.gz";
+//        String outputPopFilename = "src/main/java/org/matsim/population/output/3105_reduced_workers_5percent_sample.xml.gz";
+        String inputPopFilename = "src/main/java/org/matsim/population/output/0206_reduced_workers.xml.gz";
+        String outputPopFilename = "src/main/java/org/matsim/population/output/0206_reduced_workers_1percent_sample.xml.gz";
 
 //        if ( args!=null ) {
 //            if (args.length != 2) {
@@ -100,8 +104,28 @@ class RunPopulationDownsamplingExample {
 
     private void run() {
         final String forcedAgentId = "KRISTINA";
-        final double samplingRate = 0.1;
+        final double samplingRate = 0.01;
+        final long baseSeed = 12345L;
+        final int numberOfSamples = 10;
         final java.util.Random rng = new java.util.Random();
+
+        for (int sampleIndex = 1; sampleIndex <= numberOfSamples; sampleIndex++) {
+            String sampleOutputPopFilename = outputPopFilename.replace(
+                    ".xml.gz",
+                    "_" + sampleIndex + ".xml.gz"
+            );
+
+            writeSample(forcedAgentId, samplingRate, baseSeed + sampleIndex, sampleOutputPopFilename);
+        }
+    }
+
+    private void writeSample(
+            String forcedAgentId,
+            double samplingRate,
+            long seed,
+            String sampleOutputPopFilename
+    ) {
+        final java.util.Random rng = new java.util.Random(seed);
 
         Scenario scenario = ScenarioUtils.createScenario(ConfigUtils.createConfig());
         StreamingPopulationWriter writer = new StreamingPopulationWriter(1.0); // write all that reach it
@@ -114,7 +138,7 @@ class RunPopulationDownsamplingExample {
         });
 
         try {
-            writer.startStreaming(outputPopFilename);
+            writer.startStreaming(sampleOutputPopFilename);
             reader.readFile(inputPopFilename);
         } finally {
             writer.closeStreaming();

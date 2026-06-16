@@ -23,20 +23,20 @@ public class CreateBicycleNetworkWithElevation {
 //    private static final String inputTiffFile = "inputs_network/terrain.tif";
 //    private static final String outputFile = "outputs_network/network_with_cars_bikes_elevations.xml.gz";
 
-//    private static final String inputOsmFile = "../../../../Downloads/belgium_merged_network.osm.pbf";
-//    private static final String inputTiffFile = "../../../../Downloads/DTM_RBC_50cm.tif";
-//    private static final String outputFile = "../../../../Downloads/belgium_merged_network.xml.gz";
-//    private static final String quietnessFile = "../../../../Downloads/Bruxelles_Cyclability_Data.geojson";
+    private static final String inputOsmFile = "../../../../Downloads/belgium_merged_network_FINAL.osm.pbf";
+    private static final String inputTiffFile = "../../../../Downloads/DTM_RBC_50cm.tif";
+    private static final String outputFile = "../../../../Downloads/belgium_merged_network_2605.xml.gz";
+    private static final String quietnessFile = "../../../../Downloads/Bruxelles_Cyclability_Data.geojson";
 
 //    private static final String inputOsmFile = "../../../../Downloads/testing_brussels.osm.pbf";
 //    private static final String inputTiffFile = "../../../../Downloads/DTM_RBC_50cm_fixed.tif";
 //    private static final String outputFile = "../../../../Downloads/testing_brussels_network.xml.gz";
 //    private static final String quietnessFile = "../../../../Downloads/Bruxelles_Cyclability_Data.geojson";
 
-    private static final String inputOsmFile = "../../../../Downloads/brussels_network.osm.pbf";
-    private static final String inputTiffFile = "../../../../Downloads/DTM_RBC_50cm.tif";
-    private static final String outputFile = "../../../../Downloads/brussels_only_network.xml.gz";
-    private static final String quietnessFile = "../../../../Downloads/Bruxelles_Cyclability_Data.geojson";
+//    private static final String inputOsmFile = "../../../../Downloads/brussels_network.osm.pbf";
+//    private static final String inputTiffFile = "../../../../Downloads/DTM_RBC_50cm.tif";
+//    private static final String outputFile = "../../../../Downloads/brussels_only_network.xml.gz";
+//    private static final String quietnessFile = "../../../../Downloads/Bruxelles_Cyclability_Data.geojson";
 
     public static void main(String[] args) throws IOException {
 
@@ -73,14 +73,14 @@ public class CreateBicycleNetworkWithElevation {
 
             // Clamp invalid/null values (TIFF uses -999 for no-data)
             if (Double.isNaN(elevation) || elevation < -500) {
-                elevation = 0;
+                elevation = 50.0;
             }
 
             node.setCoord(CoordUtils.createCoord(coord.getX(), coord.getY(), elevation));
 
         } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
-            // Node is outside the TIFF bounds — default to elevation 0
-            node.setCoord(CoordUtils.createCoord(coord.getX(), coord.getY(), 0.0));
+            // Node is outside the TIFF bounds — default to elevation 30
+            node.setCoord(CoordUtils.createCoord(coord.getX(), coord.getY(), 50.0));
         }
     }
 

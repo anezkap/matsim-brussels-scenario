@@ -77,22 +77,23 @@ public final class OsmBicycleReader extends SupersonicOsmNetworkReader {
     }
 
     private static void setCycleWay(Link link, Map<String, String> tags) {
-        if (tags.containsKey(OsmTags.CYCLEWAY))
-            link.getAttributes().putAttribute(OsmTags.CYCLEWAY, tags.get(OsmTags.CYCLEWAY));
-        else if (tags.containsKey("cycleway:both"))
-            link.getAttributes().putAttribute(OsmTags.CYCLEWAY, tags.get("cycleway:both"));
+        // Note: this logic assumes a right-hand side driving roads
+        String cycleway = null;
+        String linkId = link.getId().toString();
 
-        // For right-hand traffic (e.g. Belgium): the right side of the road corresponds to the
-        // forward direction, and the left side to the reverse direction.
-        // If the cycleway is only on one side, only apply it to the forward or reverse link accordingly.
-        else if (tags.containsKey("cycleway:right") && link.getId().toString().endsWith("f"))
-            link.getAttributes().putAttribute(OsmTags.CYCLEWAY, tags.get("cycleway:right"));
-        else if (tags.containsKey("cycleway:left") && link.getId().toString().endsWith("r"))
-            link.getAttributes().putAttribute(OsmTags.CYCLEWAY, tags.get("cycleway:left"));
+        if (tags.containsKey(OsmTags.CYCLEWAY)) {
+            cycleway = tags.get(OsmTags.CYCLEWAY);
+        } else if (tags.containsKey("cycleway:both")) {
+            cycleway = tags.get("cycleway:both");
+        } else if (linkId.endsWith("f") && tags.containsKey("cycleway:right")) {
+            cycleway = tags.get("cycleway:right");
+        } else if ((linkId.endsWith("r") || linkId.endsWith("_bike-reverse")) && tags.containsKey("cycleway:left")) {
+            cycleway = tags.get("cycleway:left");
+        }
 
-        // Add cycleway for oneway roads that have reverse cycleway
-        else if (tags.containsKey("cycleway:left") && link.getId().toString().endsWith("_bike-reverse"))
-            link.getAttributes().putAttribute(OsmTags.CYCLEWAY, tags.get("cycleway:left"));
+        if (cycleway != null) {
+            link.getAttributes().putAttribute(OsmTags.CYCLEWAY, cycleway);
+        }
     }
 
     private static void setRestrictions(Link link, Map<String, String> tags) {

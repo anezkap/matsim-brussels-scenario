@@ -15,7 +15,7 @@
 			<attribute name="has_car" class="java.lang.Boolean">true</attribute>
 			<attribute name="median_income" class="java.lang.Double">0.0</attribute>
 			<attribute name="sex" class="java.lang.String">F</attribute>
-			<attribute name="subpopulation" class="java.lang.String">short_distance</attribute>
+			<attribute name="subpopulation" class="java.lang.String">long_distance</attribute>
 		</attributes>
 		<plan selected="yes">
 			<activity type="home" x="157151.2710116572" y="177617.97481705807" z="0.0" end_time="08:30:00" >

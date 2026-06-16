@@ -30,14 +30,19 @@ public class RunCsvPopulationGenerator {
 //        Path csv = Path.of("src/main/java/org/matsim/population/input/all_active_workers_final_with_train.csv");
 //        Path csv = Path.of("src/main/java/org/matsim/population/input/0205_reduced_workers.csv");
 //        Path csv = Path.of("src/main/java/org/matsim/population/input/0605_reduced_workers.csv");
-        Path csv = Path.of("src/main/java/org/matsim/population/input/0705_reduced_workers.csv");
+//        Path csv = Path.of("src/main/java/org/matsim/population/input/0705_reduced_workers.csv");
+//        Path csv = Path.of("src/main/java/org/matsim/population/input/3105_reduced_workers.csv");
+        Path csv = Path.of("src/main/java/org/matsim/population/input/0206_reduced_workers.csv");
+
 
         //        Path out = Path.of("src/main/java/org/matsim/population/output/population.xml.gz");
 //        Path out = Path.of("src/main/java/org/matsim/population/output/population_active.xml.gz");
 //        Path out = Path.of("src/main/java/org/matsim/population/output/population_active_company_car.xml.gz");
 //        Path out = Path.of("src/main/java/org/matsim/population/output/0205_reduced_workers.xml.gz");
 //        Path out = Path.of("src/main/java/org/matsim/population/output/0605_reduced_workers.xml.gz");
-        Path out = Path.of("src/main/java/org/matsim/population/output/0705_reduced_workers.xml.gz");
+//        Path out = Path.of("src/main/java/org/matsim/population/output/0705_reduced_workers.xml.gz");
+//        Path out = Path.of("src/main/java/org/matsim/population/output/3105_reduced_workers.xml.gz");
+        Path out = Path.of("src/main/java/org/matsim/population/output/0206_reduced_workers.xml.gz");
 
         Scenario scenario = ScenarioUtils.createScenario(ConfigUtils.createConfig());
         createPopulationFromCsv(scenario, csv);
@@ -76,7 +81,6 @@ public class RunCsvPopulationGenerator {
                 person.getAttributes().putAttribute("education", getRequired(c, idx, "education"));
                 person.getAttributes().putAttribute("industry", getRequired(c, idx, "industry"));
                 person.getAttributes().putAttribute("home_municipality", getRequired(c, idx, "home_municipality"));
-                person.getAttributes().putAttribute("median_income", parseNullableDouble(getRequired(c, idx, "median_income")));
                 person.getAttributes().putAttribute("has_car", parseBoolean(getRequired(c, idx, "has_car")));
                 person.getAttributes().putAttribute("carAvail", parseBoolean(getRequired(c, idx, "has_car")) ? "always" : "never");
                 person.getAttributes().putAttribute("lives_in_brussels", getRequired(c, idx, "lives_in_brussels"));
@@ -132,10 +136,12 @@ public class RunCsvPopulationGenerator {
             person.getAttributes().putAttribute("sex", "F");
             person.getAttributes().putAttribute("age", "15-19");
             person.getAttributes().putAttribute("education", "Lower educated");
-            person.getAttributes().putAttribute("median_income", "22031");
+            person.getAttributes().putAttribute("industry", "O-Q");
+            person.getAttributes().putAttribute("home_municipality", "21015");
             person.getAttributes().putAttribute("has_car", false);
             person.getAttributes().putAttribute("carAvail", "never");
-            person.getAttributes().putAttribute("brussels_resident", true);
+            person.getAttributes().putAttribute("lives_in_brussels", "True");
+            person.getAttributes().putAttribute("works_in_brussels", "True");
             person.getAttributes().putAttribute("subpopulation", "short_distance");
 
             // ---- locations (EPSG:31370, same as network) ----

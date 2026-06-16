@@ -16,6 +16,7 @@ import org.matsim.core.controler.AbstractModule;
 import org.matsim.core.controler.Controler;
 import org.matsim.core.controler.OutputDirectoryHierarchy.OverwriteFileSetting;
 import org.matsim.core.scenario.ScenarioUtils;
+import org.matsim.simwrapper.SimWrapperModule;
 import org.matsim.vehicles.Vehicle;
 import org.matsim.vehicles.VehicleType;
 import org.matsim.vehicles.VehicleUtils;
@@ -88,6 +89,8 @@ public class RunMatsim {
 				);
 			}
 		});
+
+		controler.addOverridingModule(new SimWrapperModule());
 
 		controler.run();
 	}
