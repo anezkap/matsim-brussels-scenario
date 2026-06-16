@@ -143,12 +143,12 @@ public class RunMatsim {
 	}
 
 	private static class Options {
-		private String configPath = "scenarios/brussels/config.xml";
+		private String configPath = "scenarios/brussels/baseline_scenario_10pct/config_baseline_scenario_10pct.xml";
 		private String yamlPath = null;
 		private String outputDirectory = null;
 		private String runId = null;
 		private int iterations = -1;
-		private double bikingAllowancePerKm = 0.37;
+		private double bikingAllowancePerKm = 0.35;
 
 		static Options parse(String[] args) {
 			Options options = new Options();
@@ -226,7 +226,6 @@ public class RunMatsim {
 		public double computeLinkBasedScore(Link link, Id<Vehicle> vehicleId, String bicycleMode) {
 			double distance = link.getLength();
 
-//			double bikingAllowancePerKm = 0.37;
 			double bikingAllowance = (distance / 1000.0) * bikingAllowancePerKm;
 
 			double amount = delegate.computeLinkBasedScore(link, vehicleId, bicycleMode);
